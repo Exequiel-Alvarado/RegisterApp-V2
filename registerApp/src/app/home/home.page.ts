@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  desRamoUno ="Matematicas";
+  desRamoDos ="lenguaje";
+  desRamoTres ="Ciencias";
+
   constructor() {}
 
 }
