@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'listar-qr',
     loadChildren: () => import('./listar-qr/listar-qr.module').then( m => m.ListarQRPageModule)
   },
+  {
+    path: 'alumno',
+    loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoPageModule)
+  },
 ];
 
 @NgModule({
