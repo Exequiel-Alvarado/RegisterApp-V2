@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'listar-qr',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
