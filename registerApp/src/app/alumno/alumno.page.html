@@ -5,9 +5,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <h2>Bienvenido :{{usuarioMostrar}} </h2>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Bienvenidos Alumnos</ion-card-title>
+     
+      <ion-card-title></ion-card-title>
       <ion-card-subtitle>Escanee el Código QR</ion-card-subtitle>
     </ion-card-header>
   
@@ -16,6 +18,6 @@
     <img alt="" src="https://aldeaeducativamagazine.com/wp-content/uploads/2017/11/pc-1605658_1280.jpg" width="400px"  display="center"/>
   
   </ion-card>
-  <ion-button expand="block">Registar</ion-button> 
-  <ion-button expand="block" [routerLink]="['/home']">volver</ion-button>
+  <ion-button shape="round" color="warning" [routerLink]="['/listar-qr']">Registar Clase Con QR</ion-button>
+  <ion-button shape="round" [routerLink]="['/login']">volver a Login</ion-button>
 </ion-content>

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
 
 import { AlumnoPageRoutingModule } from './alumno-routing.module';
 
@@ -13,7 +12,8 @@ import { AlumnoPage } from './alumno.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AlumnoPageRoutingModule
+    AlumnoPageRoutingModule,
+    
   ],
   declarations: [AlumnoPage]
 })

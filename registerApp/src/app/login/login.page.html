@@ -1,32 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h2>Bienvenido : Docente</h2>
+  <h2>RegisterAPP </h2>
 
   <ion-card>
-    <img alt="" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Commons_QR_code.png" />
+    <img alt="" width="20%" src="https://insucoefm.cl/wp-content/uploads/2020/10/DuocUC.jpg" />
     <ion-card-header>
       <ion-card-title>Login</ion-card-title>
-      <ion-card-subtitle>ingrese crendeciañes</ion-card-subtitle>
+      <ion-card-subtitle>ingrese crendeciales</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
   <form [formGroup]="usuario">
     
   <ion-item>
-    <ion-input label="User" labelPlacement="floating" placeholder="ingrese user" formControlName="user"></ion-input>
+    <ion-input label="User" labelPlacement="floating" placeholder="ingrese su usuario" formControlName="user"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input label="Password" labelPlacement="floating" placeholder="ingrese Password" formControlName="pass"></ion-input>
+    <ion-input type="Password" label="Password" labelPlacement="floating" placeholder="ingrese su clave" formControlName="pass"></ion-input>
   </ion-item>
 </form>
 
-  <ion-button expand="block" (click)="login()">ingresar</ion-button>
-
+  
+  <ion-button shape="round" (click)="login()">ingresar</ion-button>
+  <ion-button shape="round" [routerLink]="['/inicio']">volver</ion-button>
 
 </ion-content>

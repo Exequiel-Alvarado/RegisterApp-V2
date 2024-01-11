@@ -16,9 +16,10 @@ export class LoginPage implements OnInit {
     pass: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(20)]),
   });
 
-  docente = "aaaa";
+  docente = "dcares";
   pass1 ="aaaa";
-  alumno = "bbbb";
+  alumno = "ealvarado";
+  pass2 ="bbbb";
 
   validar= false;
 
@@ -37,7 +38,7 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/home'],nav);
       this.validar=true;
     };
-    if(this.usuario.value.user==this.alumno){
+    if(this.usuario.value.user==this.alumno && this.usuario.value.pass==this.pass2){
         this.router.navigate(['/alumno']);
         this.validar=true;
     };
@@ -53,7 +54,7 @@ export class LoginPage implements OnInit {
         header: 'Error Login',
         subHeader: 'Verificar',
         message: 'Usuario y Contraseña',
-        buttons: ['action'],
+        buttons: ['aceptar'],
       });
   
       await alert.present();
