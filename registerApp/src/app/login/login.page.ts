@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
   selector: 'app-login',
@@ -15,21 +17,41 @@ export class LoginPage implements OnInit {
   });
 
   docente = "aaaa";
-  pass1 ="aaaa"
+  pass1 ="aaaa";
+  alumno = "bbbb";
+
+  validar= false;
 
   login(){
     console.log(this.usuario.value.user);
-    if(this.usuario.value.user==this.docente){
-      console.log("ingresamos bien"),
-      this.router.navigate(['/home'])
+    if(this.usuario.value.user==this.docente && this.usuario.value.pass==this.pass1){
+      this.router.navigate(['/home']);
+      this.validar=true;
+    };
+    if(this.usuario.value.user==this.alumno){
+        this.router.navigate(['/alumno']);
+        this.validar=true;
+    };
+    if(this.validar==false)
+        this.presentAlert();
       
     }
-  };
-  
-  constructor(private router: Router){}
-  navigate(){
+
    
-  }
+
+    async presentAlert() {
+      const alert = await this.alertController.create({
+        header: 'Error Login',
+        subHeader: 'Verificar',
+        message: 'Usuario y Contraseña',
+        buttons: ['action'],
+      });
+  
+      await alert.present();
+    }
+  
+  constructor(private alertController: AlertController, private router: Router){}
+
   ngOnInit() {
   }
 
