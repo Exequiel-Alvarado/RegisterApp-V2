@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
@@ -23,9 +23,18 @@ export class LoginPage implements OnInit {
   validar= false;
 
   login(){
+
+//crear object navigation extra
+    let nav : NavigationExtras={
+      state:{
+        user : this.usuario.value.user
+
+      }
+    }
+
     console.log(this.usuario.value.user);
     if(this.usuario.value.user==this.docente && this.usuario.value.pass==this.pass1){
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home'],nav);
       this.validar=true;
     };
     if(this.usuario.value.user==this.alumno){
