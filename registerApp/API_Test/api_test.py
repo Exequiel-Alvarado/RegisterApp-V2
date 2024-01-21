@@ -7,16 +7,16 @@ CORS(app)
 profesores = [
     {
         "id": 1,
-        "nombre": "Juan Pérez",
+        "nombre": "Juan carlos bodoques",
         "cursos": [
             {
                 "id": 1,
-                "nombre": "Matemáticas",
+                "nombre": "Matematicas",
                 "codigo": "PGY0000",
                 "seccion": "013V",
                 "alumnos": [
-                    {"id": 1, "nombre": "Luis"},
-                    {"id": 2, "nombre": "María"}
+                    {"id": 1, "nombre": "exequiel"},
+                    {"id": 2, "nombre": "amelia"}
                 ]
             },
             {
@@ -43,7 +43,7 @@ usuarios = [
         "id": 1,
         "user": "docente",
         "password": "password1",
-        "nombre": "Juan Perez",
+        "nombre": "Diego Cares",
         "perfil":  1,
         "correo": "docente@gmail.com"
     },
@@ -51,7 +51,7 @@ usuarios = [
         "id": 2,
         "user": "alumno",
         "password": "password2",
-        "nombre": "Luis Gonzalez",
+        "nombre": "Exequiel Alvarado",
         "perfil": 2,
         "correo": "alumno@gmail.com"
     }

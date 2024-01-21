@@ -40,6 +40,12 @@ const routes: Routes = [
     path: 'detallecurso',
     loadChildren: () => import('./detallecurso/detallecurso.module').then( m => m.DetallecursoPageModule)
   },
+  {
+    path: 'profe-qr',
+    loadChildren: () => import('./profe-qr/profe-qr.module').then( m => m.ProfeQrPageModule),
+    canLoad:[PerfilGuard]
+  },
+
 ];
 
 @NgModule({

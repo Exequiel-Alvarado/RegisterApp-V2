@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute,Route,NavigationExtras, Router } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { ConsumoapiService } from '../services/consumoapi.service';
 
 @Component({
   selector: 'app-home',
@@ -8,21 +9,33 @@ import { ActivatedRoute,Route,NavigationExtras, Router } from '@angular/router';
 })
 export class HomePage {
 
-  desRamoUno ="Matematicas";
-  desRamoDos ="lenguaje";
-  desRamoTres ="Ciencias";
+  desRamo1 = "Matemática";
+  desRamo2 = "Inglés";
+  desRamo3 = "APP Móviles";
+  usuarioMostrar = "";
+  correoMostrar = "";
+  idMostrar!: number;
 
-  usuarioMostrar="";
+  idProfesor! : number ;
+  cursos! : string ;
 
+  constructor(private consumoapi:ConsumoapiService, private activeroute: ActivatedRoute, private router: Router) {
 
-
-
-  constructor(private activerouter: ActivatedRoute, private router:Router) {
-    this.activerouter.queryParams.subscribe(params =>{
-      if(this.router.getCurrentNavigation()?.extras.state){
+    this.activeroute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation()?.extras.state) {
         this.usuarioMostrar = this.router.getCurrentNavigation()?.extras.state?.['user'];
+        this.correoMostrar = this.router.getCurrentNavigation()?.extras.state?.['correo'];
+        this.idMostrar = this.router.getCurrentNavigation()?.extras.state?.['idProfesor'];
       }
+    })
+  }
+
+  ngOnInit() {
+    this.consumoapi.obtenerCursosPorProfesor(this.idMostrar).subscribe(data => {
+      this.cursos = data;
+      console.log(this.cursos);
     });
+
 
   }
 
