@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'page404',
     loadChildren: () => import('./page404/page404.module').then( m => m.Page404PageModule)
   },
+  {
+    path: 'detallecurso',
+    loadChildren: () => import('./detallecurso/detallecurso.module').then( m => m.DetallecursoPageModule)
+  },
 ];
 
 @NgModule({
