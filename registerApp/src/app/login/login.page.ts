@@ -1,9 +1,7 @@
 
 import { FormControl,FormGroup,Validators   } from '@angular/forms';
 import { Router,NavigationExtras } from '@angular/router';
-import { AnimationController, IonCard } from '@ionic/angular';
-import type { Animation } from '@ionic/angular';
-import type { QueryList } from '@angular/core';
+
 import { Component,OnInit, ElementRef, ViewChildren, ViewChild } from '@angular/core';
 import { AuthGuard } from '../guards/auth.guard';
 import { ConsumoapiService } from '../services/consumoapi.service';
