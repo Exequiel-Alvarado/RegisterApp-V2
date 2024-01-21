@@ -30,12 +30,12 @@ export class LoginPage implements OnInit {
 
 
 
-  docente = "dcares";
-  pass1 ="aaaa";
-  alumno = "ealvarado";
-  pass2 ="bbbb";
+  //docente = "dcares";
+  //pass1 ="aaaa";
+  //alumno = "ealvarado";
+  //pass2 ="bbbb";
 
-  validar= false;
+  //validar= false;
 
   login(){
 
@@ -60,11 +60,13 @@ this.consumoapi.login(this.usuario.value.user!, this.usuario.value.pass!).subscr
       if (this.typeuser.tipoPerfil === 1) {
         this.auth.setAuthenticationStatus(true);
         this.router.navigate(['/home'], setData);
+        this.consumoapi.setTipoPerfil("docente");
       }
 
       if (this.typeuser.tipoPerfil === 2) {
         this.auth.setAuthenticationStatus(true);
         this.router.navigate(['/alumno'], setData);
+        this.consumoapi.setTipoPerfil("alumno");
       }
     }
 

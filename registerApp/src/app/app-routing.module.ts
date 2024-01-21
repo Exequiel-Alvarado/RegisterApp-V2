@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CanActivate } from '@angular/router';
+import { PerfilGuard } from './guards/perfil.guard';
+import { AlumnoGuard } from './guards/alumno.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canLoad:[PerfilGuard]
   },
   {
     path: '',
@@ -21,14 +25,15 @@ const routes: Routes = [
   },
   {
     path: 'alumno',
-    loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoPageModule)
+    loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoPageModule),
+    canLoad:[AlumnoGuard]
   },
   {
     path: 'inicio',
     loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
-    path: 'page404',
+    path: '**',
     loadChildren: () => import('./page404/page404.module').then( m => m.Page404PageModule)
   },
   {

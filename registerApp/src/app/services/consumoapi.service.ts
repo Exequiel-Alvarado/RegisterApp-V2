@@ -12,6 +12,15 @@ export class ConsumoapiService {
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }) }
 
   url: string = 'http://127.0.0.1:5000/';
+  tipoPerfil="";
+  /**
+   * setTipoPerfil
+perfil:any   
+d*/
+  public setTipoPerfil(perfil:any) {
+    this.tipoPerfil = perfil
+    
+  }
 
   public login(usuario: string, pass: string): Observable<HttpResponse<usuario>> {
     const body = {
