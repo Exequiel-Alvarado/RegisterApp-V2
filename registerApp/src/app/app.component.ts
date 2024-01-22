@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Camera } from '@capacitor/camera';
 
 
 @Component({
@@ -9,3 +10,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   constructor() {}
 }
+
