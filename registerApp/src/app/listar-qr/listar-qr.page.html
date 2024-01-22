@@ -42,6 +42,12 @@
     </ion-item>
   </ion-list>
 
-  <ion-button shape="round" color="warning" (click)="qr()">>Escanear</ion-button>
+  <div  id="container">
+    <img src="{{imageSource}}" style="width: 400px;" />
+    <ion-button shape="round" color="warning" (click)="takePicture()">Escanear</ion-button>
+
+  </div>
+
+  
   <ion-button shape="round"  [routerLink]="['/inicio']">volver</ion-button>
 </ion-content>

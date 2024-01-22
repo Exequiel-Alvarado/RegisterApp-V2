@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router, NavigationExtras,ActivatedRoute } from '@angular/router';
+import { Camera,CameraResultType, CameraSource } from '@capacitor/camera';
 
 
 @Component({
@@ -35,6 +36,8 @@ validar2=false
           await alert.present();
         }
       
+        imageSource:any;
+
       constructor(private alertController: AlertController, private router: Router,private activerouter: ActivatedRoute,){
         this.activerouter.queryParams.subscribe(params =>{
           if(this.router.getCurrentNavigation()?.extras.state){
@@ -43,5 +46,15 @@ validar2=false
         });
     
       }
+
+      takePicture = async () => {
+        const image = await Camera.getPhoto({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.DataUrl,
+          source: CameraSource.Prompt
+        });
+        this.imageSource=image.dataUrl;
       }
-    
+      
+    }
