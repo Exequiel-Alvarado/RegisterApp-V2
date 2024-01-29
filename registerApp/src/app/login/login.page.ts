@@ -1,14 +1,13 @@
-
-import { FormControl,FormGroup,Validators   } from '@angular/forms';
-import { Router,NavigationExtras } from '@angular/router';
-
-import { Component,OnInit, ElementRef, ViewChildren, ViewChild } from '@angular/core';
-import { AuthGuard } from '../guards/auth.guard';
-import { ConsumoapiService } from '../services/consumoapi.service';
+import { Component ,OnInit } from '@angular/core';
+import { FormGroup ,FormControl,Validators} from '@angular/forms';
+import { Router, ActivatedRoute, NavigationExtras} from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { usuario } from '../modelo/usuario';
-import { perfil } from '../modelo/perfil';
-import { curso } from '../modelo/curso';
+import { ConsumoapiService } from '../services/consumoapi.service';
+import { AuthguardGuard} from '../guards/authguard.guard';
+import { AlumnoguardGuard } from '../guards/alumnoguard.guard';
+
+
+
 
 @Component({
   selector: 'app-login',
@@ -17,85 +16,78 @@ import { curso } from '../modelo/curso';
 })
 export class LoginPage implements OnInit {
 
-  private typeuser!: usuario;
-  private typePerfil!: perfil;
-  private curso!:curso;
-
-    usuario = new FormGroup({
+  usuario = new FormGroup({
     user: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(20)]),
     pass: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(20)]),
   });
 
- 
+  docente="docente";
+  password="password1";
+  
+  alumno="alumno";
+  passa="password2";
+  
 
+  nombreDocente!:string;
+  correoDocente!:string ;
 
+  validar= false;
 
-  //docente = "dcares";
-  //pass1 ="aaaa";
-  //alumno = "ealvarado";
-  //pass2 ="bbbb";
-
-  //validar= false;
+  idProfesor! : string ;
 
   login(){
 
-//crear object navigation extra
-this.consumoapi.login(this.usuario.value.user!, this.usuario.value.pass!).subscribe(
-  (response) => {
-    this.typeuser = response.body as unknown as usuario;
-    console.log("bbb" + response.status);
-    if (response.status == 200) {
-      let setData: NavigationExtras = {
+    this.consumoapi.login(this.usuario.value.user! , this.usuario.value.pass!).subscribe(response => {
+      const data = response.body;
+      this.nombreDocente = data.nombre;
+      this.correoDocente = data.correo;
+      this.idProfesor= data.id;
+      console.log(data)
+      
+
+      let nav : NavigationExtras = {
         state: {
-          id: this.typeuser.id,
-          user: this.typeuser.user,
-          correo: this.typeuser.correo,
-          nombre: this.typeuser.nombre,
-          tipoPerfil: this.typeuser.tipoPerfil
+          user : this.nombreDocente,
+          correo : this.correoDocente,
+          idProfesor : this.idProfesor
         }
-      };
-
-      console.log("aaas"+this.typeuser.tipoPerfil);
-
-      if (this.typeuser.tipoPerfil === 1) {
-        this.auth.setAuthenticationStatus(true);
-        this.router.navigate(['/home'], setData);
-        this.consumoapi.setTipoPerfil("docente");
       }
-
-      if (this.typeuser.tipoPerfil === 2) {
-        this.auth.setAuthenticationStatus(true);
-        this.router.navigate(['/alumno'], setData);
-        this.consumoapi.setTipoPerfil("alumno");
-      }
-    }
-
-    if (response.status === 401) {
-      this.presentAlert();
-
-    }
-  },
-  (error) => {
-    console.error('Error en inicio de sesión:', error);
-  });
-}
-
-async presentAlert(){
-const alert = await this.alertController.create({
-  header: 'Error Login',
-  subHeader: 'Infomación : ',
-  message: 'Usuario o contraseña son incorrecto',
-  buttons: ['Aceptar'],
-});
-await alert.present();
-}
   
-constructor(private router: Router, private auth:AuthGuard, private consumoapi:ConsumoapiService, private alertController :AlertController) {}
+      if(this.usuario.value.user==this.docente && this.usuario.value.pass==this.password){
+        this.auth.setAuthenticatedstatus(true);
+        this.router.navigate(['/home'], nav);
+        this.validar=true;
+      }
+      
+      if(this.usuario.value.user==this.alumno && this.usuario.value.pass==this.passa){
+      this.authalumno.setAuthenticatedstatus(true);
+        this.router.navigate(['/alumno'], nav);
+        this.validar=true;
+  
+      }
+      if (this.validar==false)
+       this.presentAlert();
+    })
+
+    
+
+  }
+
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error Login',
+      subHeader: 'Verificar',
+      message: 'Usuario y/o Contraseña incorrecto',
+      buttons: ['Cerrar'],
+    });
+
+    await alert.present();
+  }
+
+  constructor(private authalumno : AlumnoguardGuard, private consumoapi:ConsumoapiService, private auth:AuthguardGuard, private alertController: AlertController, private router: Router) { }
 
   ngOnInit() {
   }
 
-  
-  
- 
 }

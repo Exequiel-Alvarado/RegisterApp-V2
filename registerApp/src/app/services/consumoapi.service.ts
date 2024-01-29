@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { usuario } from '../modelo/usuario';
-import { alumnos } from '../modelo/alumnos';
 
 @Injectable({
   providedIn: 'root'
@@ -12,34 +10,29 @@ export class ConsumoapiService {
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }) }
 
   url: string = 'http://127.0.0.1:5000/';
-  tipoPerfil="";
-  /**
-   * setTipoPerfil
-perfil:any   
-d*/
-  public setTipoPerfil(perfil:any) {
-    this.tipoPerfil = perfil
-    
+  tipoPerfil!: string;
+
+  getAlumnoCurso(idProfesor:number,idCurso:number){
+    return this.http.get<any>(this.url + '/profesores/' + idProfesor + '/cursos/' + idCurso)
   }
 
-  public login(usuario: string, pass: string): Observable<HttpResponse<usuario>> {
+  obtenerCursosPorProfesor(idProfesor:number){
+    return this.http.get<any>(this.url + '/profesores/' + idProfesor + '/cursos')
+  }
+
+  public obtenerAlumnosPorCurso(profesorId: number, cursoId: number) {
+    return this.http.get<any[]>(this.url + 'profesores/' + profesorId + '/cursos/' + cursoId + '/alumnos', this.httpOptions);
+  }
+
+  login(usuario: string, pass: string) {Observable<any>
     const body = {
       user: usuario,
       password: pass
     };
 
-    return this.http.post<usuario>(this.url + "login", body, { ...this.httpOptions, observe: 'response' });
+    return this.http.post<any>(this.url + "login", body, { ...this.httpOptions, observe: 'response' });
   }
+  
+  constructor(private http:HttpClient) {}
 
-  public obtenerCursosPorProfesor(profesorId: number): Observable<any> {
-    return this.http.get<any>(this.url + 'profesores/' + profesorId + '/cursos', this.httpOptions);
   }
-
-  public obtenerAlumnosPorCurso(profesorId: number, cursoId: number): Observable<alumnos[]> {
-    return this.http.get<alumnos[]>(this.url + 'profesores/' + profesorId + '/cursos/' + cursoId + '/alumnos', this.httpOptions);
-  }
-
-
-  constructor(private http: HttpClient) {
-  }
-}

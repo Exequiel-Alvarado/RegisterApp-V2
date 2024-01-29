@@ -98,5 +98,39 @@ def obtener_alumnos_curso(profesor_id, curso_id):
         return jsonify({"message": "Curso no encontrado"}), 404
     return jsonify(curso["alumnos"]), 200
 
+@app.route('/registrar_asistencia', methods=['POST'])
+
+def registrar_asistencia():
+
+  alumno_id = request.json.get('alumno_id')
+
+  codigo = request.json.get('codigo')
+
+  seccion = request.json.get('seccion')
+
+  fecha = request.json.get('fecha')
+
+   
+
+  # Aquí buscarías el curso y al alumno y actualizarías su estado.
+
+  for profesor in profesores:
+
+    for curso in profesor["cursos"]:
+
+      if curso["codigo"] == codigo and curso["seccion"] == seccion:
+
+        for alumno in curso["alumnos"]:
+
+          if alumno["id"] == alumno_id:
+
+            alumno["status"] = 1 # 1 es para presente
+
+            return jsonify({"message": "Asistencia registrada"}), 200
+
+   
+
+  return jsonify({"message": "No se pudo registrar la asistencia"}), 400
+
 if __name__ == '__main__':
     app.run(debug=True)

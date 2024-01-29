@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Route,NavigationExtras, Router } from '@angular/router';
+import { Component} from '@angular/core';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { ConsumoapiService } from '../services/consumoapi.service'
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
+
 
 @Component({
   selector: 'app-alumno',
@@ -8,18 +12,22 @@ import { ActivatedRoute,Route,NavigationExtras, Router } from '@angular/router';
 })
 export class AlumnoPage  {
 
-  usuarioMostrar="";
+  alumnoMostrar = "";
 
+   
+  
+  alertButtons = ['Cerrar Sesión'];
+  
 
-
-
-  constructor(private activerouter: ActivatedRoute, private router:Router) {
-    this.activerouter.queryParams.subscribe(params =>{
-      if(this.router.getCurrentNavigation()?.extras.state){
-        this.usuarioMostrar = this.router.getCurrentNavigation()?.extras.state?.['user'];
+  constructor( private activeroute: ActivatedRoute, private router: Router) {
+    this.activeroute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation()?.extras.state) {
+        this.alumnoMostrar = this.router.getCurrentNavigation()?.extras.state?.['user'];
       }
-    });
-
+      
+      
+    })
   }
+
 
 }

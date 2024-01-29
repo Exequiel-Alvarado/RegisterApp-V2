@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CanActivate } from '@angular/router';
-import { PerfilGuard } from './guards/perfil.guard';
-import { AlumnoGuard } from './guards/alumno.guard';
+import { AuthguardGuard } from './guards/authguard.guard';
+import { AlumnoguardGuard } from './guards/alumnoguard.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canLoad:[PerfilGuard]
+    canActivate: [AuthguardGuard]
   },
   {
     path: '',
@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'alumno',
     loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoPageModule),
-    canLoad:[AlumnoGuard]
+    canActivate: [AlumnoguardGuard]
   },
   {
     path: 'inicio',
@@ -43,7 +43,7 @@ const routes: Routes = [
   {
     path: 'profe-qr',
     loadChildren: () => import('./profe-qr/profe-qr.module').then( m => m.ProfeQrPageModule),
-    canLoad:[PerfilGuard]
+    canActivate: [AuthguardGuard]
   },
 
 ];

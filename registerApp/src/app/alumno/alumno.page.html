@@ -1,23 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>alumno</ion-title>
+    <ion-title>Home Alumno</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h2>Bienvenido :{{usuarioMostrar}} </h2>
-  <ion-card>
+
+  <ion-card color="tertiary">
     <ion-card-header>
-     
-      <ion-card-title></ion-card-title>
-      <ion-card-subtitle>Escanee el Código QR</ion-card-subtitle>
+      <ion-card-title> <h4>Bienvenido Alumno: {{alumnoMostrar}}</h4></ion-card-title>
     </ion-card-header>
+    <ion-card-content> </ion-card-content>
   
-  </ion-card>
-  <ion-card>
-    <img alt="" src="https://aldeaeducativamagazine.com/wp-content/uploads/2017/11/pc-1605658_1280.jpg" width="400px"  display="center"/>
   
   </ion-card>
   <ion-button shape="round" color="warning" [routerLink]="['/listar-qr']">Registar Clase Con QR</ion-button>
   <ion-button shape="round" [routerLink]="['/login']">volver a Login</ion-button>
+     
+
+    
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+       <ion-modal [keepContentsMounted]="true">
+           <ng-template>
+              <ion-datetime id="datetime"></ion-datetime>
+           </ng-template>
+       </ion-modal>
+    </ion-title>
+  </ion-toolbar>
+
+</ion-footer>
+
+
