@@ -33,10 +33,6 @@ const routes: Routes = [
     loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
-    path: '**',
-    loadChildren: () => import('./page404/page404.module').then( m => m.Page404PageModule)
-  },
-  {
     path: 'detallecurso',
     loadChildren: () => import('./detallecurso/detallecurso.module').then( m => m.DetallecursoPageModule)
   },
@@ -44,7 +40,12 @@ const routes: Routes = [
     path: 'profe-qr',
     loadChildren: () => import('./profe-qr/profe-qr.module').then( m => m.ProfeQrPageModule),
     canActivate: [AuthguardGuard]
+    
   },
+  {
+    path: '**',
+    loadChildren: () => import('./page404/page404.module').then( m => m.Page404PageModule)
+  }
 
 ];
 

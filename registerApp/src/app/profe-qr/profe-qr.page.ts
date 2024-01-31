@@ -11,9 +11,6 @@ import { ActivatedRoute, Router, Route } from '@angular/router';
 export class ProfeQrPage implements OnInit {
 
 
-  
-  
-
     [x: string]: any;
   
     nombreCursoMostrar! : string;
@@ -40,7 +37,6 @@ export class ProfeQrPage implements OnInit {
         }
       })
     }
-  
     
   
     ngOnInit() {
