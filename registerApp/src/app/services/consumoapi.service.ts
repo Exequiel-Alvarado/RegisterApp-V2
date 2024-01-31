@@ -35,4 +35,8 @@ export class ConsumoapiService {
   
   constructor(private http:HttpClient) {}
 
+  
+  public getRepositories() {
+    return this.http.get('https://raw.githubusercontent.com/Exequiel-Alvarado/RegisterApp-V2/main/registerApp/API_Test/api_test.py');
+  }
   }
