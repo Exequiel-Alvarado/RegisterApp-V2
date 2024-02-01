@@ -9,7 +9,7 @@ export class ConsumoapiService {
 
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }) }
 
-  url: string = 'http://127.0.0.1:5000/';
+  url: string = 'https://f1l1p0hx-5000.brs.devtunnels.ms/';
   tipoPerfil!: string;
 
   getAlumnoCurso(idProfesor:number,idCurso:number){
